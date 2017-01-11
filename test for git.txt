@@ -1,2 +1,2 @@
-This is the first line for this text.
+This is the first line.
 Hello world.
