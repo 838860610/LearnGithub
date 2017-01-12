@@ -78,28 +78,28 @@ Git提供了一个命令`git reflog`用来记录你的每一次命令，
 Git的版本库里存了很多东西，其中最重要的就是称为**stage（或者叫index）的暂存区**，还有Git为我们自动创建的第一个分支**master**，以及指向master的一个指针叫**HEAD**
 
 我们**把文件往Git版本库里添加**的时候，是分两步执行的    
-1. 1. 用`git add`把文件添加进去，实际上就是把文件修改添加到暂存区    
-2. 2. 用`git commit`提交更改，实际上就是把暂存区的所有内容提交到当前分支。
+1. 用`git add`把文件添加进去，实际上就是把文件修改添加到暂存区    
+2. 用`git commit`提交更改，实际上就是把暂存区的所有内容提交到当前分支。
 因为我们创建Git版本库时，Git自动为我们创建了唯一一个master分支，所以，现在，git commit就是往master分支上提交更改。
 你可以简单理解为，需要提交的文件修改通通放到暂存区，然后，一次性提交暂存区的所有修改。
 
+##查看工作区和版本库里面最新版本的区别
+用`git diff HEAD -- readme.txt`命令可以
 
-用`git diff HEAD -- readme.txt`命令可以查看工作区和版本库里面最新版本的区别
-
-
-`git checkout -- file`可以**丢弃工作区的修改**：
+##丢弃工作区的修改
+用`git checkout -- file`丢弃工作区的修改  
 `$ git checkout -- readme.txt`   
-命令`git checkout -- readme.txt`意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：
-1. 一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；  
+解释：命令`git checkout -- readme.txt`意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：  
+1. 一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；   
 2. 一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。   
-
-总之，就是让这个文件回到最近一次`git commit`或`git add`时的状态。
+总之，就是让这个文件回到最近一次`git commit`或`git add`时的状态。  
 `git checkout`其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。(可以理解成删除也是修改的特殊一中)
 
+##撤销暂存区的修改
 用命令`git reset HEAD file`可以把**暂存区的修改撤销掉（unstage），重新放回工作区**
 
 ##远程仓库
-本地Git仓库和GitHub仓库之间的传输是通过SSH加密的
+本地Git仓库和GitHub仓库之间的传输是通过SSH加密的    
 1. 创建SSH Key 在用户主目录下(git bash下的“~”的路径)，看看有没有.ssh目录，如果有，再看看这个目录下
 有没有id_rsa和id_rsa.pub这两个文件，如果已经有了，可直接跳到下一步。如果没有，
 打开Shell（Windows下打开Git Bash），创建SSH Key：
