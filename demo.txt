@@ -2,3 +2,4 @@ write something for testing git windows.
 git is a free software
 append child
 git trscks changes
+i change again after git add before git commit
