@@ -1,4 +1,4 @@
-write something for testing git windows.
+writnge something for testing git windows.
 git is a free software
 append child
 git trscks changes
