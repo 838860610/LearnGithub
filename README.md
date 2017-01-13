@@ -75,7 +75,8 @@ Git提供了一个命令`git reflog`用来记录你的每一次命令，
 
 ##版本库（Repository）
 工作区有一个**隐藏目录.git**，这个不算工作区，而是Git的**版本库**。
-Git的版本库里存了很多东西，其中最重要的就是称为**stage（或者叫index）的暂存区**，还有Git为我们自动创建的第一个分支**master**，以及指向master的一个指针叫**HEAD**
+Git的版本库里存了很多东西，其中最重要的就是称为**stage（或者叫index）的暂存区**，还有Git为我们自动创建的第一个分支**master**，以及指向master的一个指针叫**HEAD**   
+![stages](https://github.com/838860610/LearnGitHub/blob/master/img/git_stage.jpg?raw=true)    
 
 我们**把文件往Git版本库里添加**的时候，是分两步执行的    
 1. 用`git add`把文件添加进去，实际上就是把文件修改添加到暂存区    
