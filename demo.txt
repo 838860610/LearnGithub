@@ -4,3 +4,4 @@ append child
 git trscks changes
 createing a new branch is quick.
 i change again after git add before git commit
+creating a new branch is quick and simple.
