@@ -2,4 +2,5 @@ write something for testing git windows.
 git is a free software
 append child
 git trscks changes
+createing a new branch is quick.
 i change again after git add before git commit
