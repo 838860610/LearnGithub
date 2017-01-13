@@ -118,3 +118,40 @@ Git的版本库里存了很多东西，其中最重要的就是称为**stage（�
 
 ##推送
 把本地库的内容推送到远程，用`git push`命令，实际上是把当前分支master推送到远程
+
+##创建与合并分支
+**HEAD**严格来说并不是指向提交，而是指向**`maseter`**，**`maseter`**指向**提交**。**HEAD**指向的是**当前分支**。   
+1. 当我们创建新的分支，例如`dev`时，Git新建了一个指针叫`dev`，指向`master`相同的提交，再把`HEAD`指向`dev`，就表示当前分支在`dev`上。Git创建一个分支很快，因为除了增加一个`dev`指针，改改`HEAD`的指向，工作区的文件都没有任何变化！   
+2. 我们在`dev`上的工作完成了，就可以把`dev`合并到`master`上。Git怎么合并呢？最简单的方法，就是直接把`master`指向`dev`的当前提交，就完成了合并。    
+3. 合并完分支后，甚至可以删除`dev`分支。删除`dev`分支就是把`dev`指针给删掉，删掉后，我们就剩下了一条`master`分支。  
+
+`git branch`命令会列出所有分支，当前分支前面会标一个*号。   
+`git merge`命令用于合并指定分支到当前分支   
+注意到会有`Fast-forward`信息，Git告诉我们，这次合并是“快进模式”，也就是直接把`master`指向`dev`的当前提交，所以合并速度非常快。
+####小结
+    查看分支：git branch   
+    创建分支：git branch <name>
+    切换分支：git checkout <name> 
+	git checkout命令加上-b参数表示创建并切换   
+    创建+切换分支：git checkout -b <name>   
+    合并某分支到当前分支：git merge <name>   
+    删除分支：git branch -d <name>
+
+##分支管理策略
+通常，合并分支时，如果可能，Git会用`Fast forward`模式，但这种模式下，**删除分支后，会丢掉分支信息**。
+如果要强制禁用`Fast forward`模式，Git就会**在merge时生成一个新的commit**，这样，从分支历史上就可以看出分支信息。   
+**`--no-ff`参数，表示禁用`Fast forward`**
+
+
+##Bug分支
+Git还提供了一个**`stash`**功能，可以把当前工作现场“储藏”起来，等以后恢复现场后继续工作   
+`git stash list`命令查看stash，存放的工作现场   
+恢复的方法
+1. `git stash apply`恢复，但是恢复后，stash内容并不删除，你需要用`git stash drop`来删除
+2. `git stash pop`，恢复的同时把stash内容也删了  
+在可以多次stash的情况下，恢复的时候，先用`git stash list`查看，然后恢复指定的stash：   
+`$ git stash apply stash@{0}`
+
+
+
+
