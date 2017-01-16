@@ -152,6 +152,59 @@ Git还提供了一个**`stash`**功能，可以把当前工作现场“储藏”
 在可以多次stash的情况下，恢复的时候，先用`git stash list`查看，然后恢复指定的stash：   
 `$ git stash apply stash@{0}`
 
+##Feature分支
+开发一个新feature，最好新建一个分支；
+如果要丢弃一个没有被合并过的分支，可以通过**`git branch -D <name>`**强行删除。
+
+##多人协作
+查看远程库信息，用`git remote`  
+`git remote -v`显示更详细信息 
+
+##推送分支
+推送分支，就是把该分支上的所有本地提交推送到远程库。推送时，要指定本地分支，这样，Git就会把该分支推送到远程库对应的远程分支上
+`$ git push origin master  `    
+如果要推送其他分支，比如dev，就改成：
+`$ git push origin dev `
+
+
+##抓取分支
+多人协作时，大家都会往`master`和`dev`分支上推送各自的修改。
+`git pull`
+
+###小结
+从本地推送分支，使用`git push origin branch-name`，如果推送失败，先用`git pull`抓取远程的新提交  
+在本地创建和远程分支对应的分支，使用`git checkout -b branch-name origin/branch-name`，本地和远程分支的名称最好一致  
+建立本地分支和远程分支的关联，使用`git branch --set-upstream branch-name origin/branch-name ` 
+从远程抓取分支，使用`git pull`，如果有冲突，要先处理冲突
+
+
+##创建标签
+1.  切换到需要打标签的分支上
+2. `git tag <name>`就可以打标签，默认标签打在最新提交的commit上。
+3. 要打以前commit的标签，方法是找到历史提交的commit id `git tag <tag name> <commit id>`    
+`git show <tagname>`查看标签信息   
+还可以创建带有说明的标签，用-a指定标签名，-m指定说明文字
+
+##删除标签
+删除本地标签`git tag -d <tagname>`   
+推送标签到远程`git push origin <tagname>`或者一次性推送全部尚未推送的本地标签`git push origin --tags`   
+删除远程标签
+1. 先删除本地标签
+2. 从远程删除`git push origin :refs/tags/<tagname>`
+
+##自定义Git
+让Git显示颜色，会让命令输出看起来更醒目：
+`$ git config --global color.ui true`
+
+##忽略特殊文件
+在Git工作区的根目录下创建一个特殊的.gitignore文件，然后把要忽略的文件名填进去，Git就会自动忽略这些文件
+当然检验.gitignore的标准是`git status`命令是不是说`working directory clean`   
+如果你确实想添加该文件，可以用-f强制添加到Git
+`$ git add -f App.class`   
+需要找出来到底哪个规则写错了，可以用`git check-ignore`命令检查：
+`$ git check-ignore -v App.class`Git会显示，哪一行的规则忽略了该文件。
+
+
 
 
 
